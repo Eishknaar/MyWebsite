@@ -17,7 +17,7 @@ class PixiManager {
 
     private initialise(): void {
         this.width = 1920;
-        this.height = 1080;
+        this.height = 937;
         this.ratio = this.width / this.height;
         window.onresize = () => this.resize();
     }
