@@ -196,6 +196,29 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">images/tile_bottom.png</key>
+            <key type="filename">images/tile_bottom_left.png</key>
+            <key type="filename">images/tile_bottom_right.png</key>
+            <key type="filename">images/tile_middle.png</key>
+            <key type="filename">images/tile_middle_left.png</key>
+            <key type="filename">images/tile_middle_right.png</key>
+            <key type="filename">images/tile_top.png</key>
+            <key type="filename">images/tile_top_left.png</key>
+            <key type="filename">images/tile_top_right.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>20,20,40,40</rect>
+                <key>scale9Paddings</key>
+                <rect>20,20,40,40</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
         </map>
         <key>fileList</key>
         <array>

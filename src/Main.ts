@@ -28,11 +28,17 @@ class Main {
 
     protected create(): void {
         this.createBackground();
+        this.createPlatformDisplay();
     }
 
     protected createBackground(): void {
         let background = this.factory.createBackground();
         this.addComponent(background);
+    }
+
+    protected createPlatformDisplay(): void {
+        let platformDisplay = this.factory.createPlatformDisplay();
+        this.addComponent(platformDisplay);
     }
 
     protected addComponent(component: PIXI.DisplayObject): void {

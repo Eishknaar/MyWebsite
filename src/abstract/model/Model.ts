@@ -24,6 +24,10 @@ export class Model {
         return this.fontMap.getFont(fontStyle);
     }
 
+    public getPlayerHeight(): number {
+        return 80;
+    }
+
     public addEventListener(event: string, handler: Function, scope: any): void {
         this.eventHandler.addListener(event, () => {
             handler.call(scope);
