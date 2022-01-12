@@ -1,19 +1,19 @@
 import {AbstractGameView} from "../../abstract/display/view/AbstractGameView";
+import {Interactable} from "../../abstract/display/view/Interactable";
 import {AbstractViewProperties} from "../../abstract/display/properties/AbstractViewProperties";
 import {PlatformProperties} from "../properties/PlatformProperties";
 import {TileProperties} from "../properties/TileProperties";
 import {Panel} from "../../abstract/display/view/Panel";
 import {Tile} from "./Tile";
-export class Platform extends AbstractGameView {
+export class Platform extends Interactable {
 
     protected properties: PlatformProperties;
     protected panel: Panel;
-    protected playerPosRectangle: PIXI.Rectangle;
 
     public create(): void {
+        super.create();
         this.createPanel();
         this.createTiles();
-        this.setPlayerPosRectangle();
     }
 
     public createProperties(properties: AbstractViewProperties): void {
@@ -63,15 +63,4 @@ export class Platform extends AbstractGameView {
         this.panel.refresh();
     }
 
-    protected setPlayerPosRectangle(): void {
-        let height: number = 1;
-        let width: number = this.getBounds().width;
-        let posX: number = this.x;
-        let posY: number = this.y + this.model.getPlayerHeight();
-        this.playerPosRectangle = new PIXI.Rectangle(posX, posY, width, height);
-    }
-
-    public getPlayerPosRectangle(): PIXI.Rectangle {
-        return this.playerPosRectangle;
-    }
 }
