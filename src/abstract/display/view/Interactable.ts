@@ -13,11 +13,13 @@ export class Interactable extends AbstractGameView {
     protected setCollider(): void {
         this.__collider = new PIXI.Rectangle(0, 0, this.getBounds().width, this.getBounds().height);
 
-        const rect = new PIXI.Graphics();
-        rect.beginFill(0xFF0000);
-        rect.drawRect(this.__collider.x, this.__collider.y, this.__collider.width, this.__collider.height);
-        rect.endFill();
-        this.addChild(rect);
+        if(this.coreProperties.debug){
+            const rect = new PIXI.Graphics();
+            rect.beginFill(0xFF0000);
+            rect.drawRect(this.__collider.x, this.__collider.y, this.__collider.width, this.__collider.height);
+            rect.endFill();
+            this.addChild(rect);
+        }
     }
 
     public getCollider(): PIXI.Rectangle {

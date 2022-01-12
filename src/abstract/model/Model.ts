@@ -28,6 +28,10 @@ export class Model {
         return 80;
     }
 
+    public isDebug(): boolean {
+        return false;
+    }
+
     public addEventListener(event: string, handler: Function, scope: any): void {
         this.eventHandler.addListener(event, () => {
             handler.call(scope);

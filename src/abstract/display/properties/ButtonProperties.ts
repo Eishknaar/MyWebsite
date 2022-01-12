@@ -11,8 +11,6 @@ export class ButtonProperties extends AbstractViewProperties {
     public fontStyle: string;
     public lang: string;
 
-    public debug: boolean;
-
     constructor(imageName: string, fontStyle?: string, lang?: string, position?: PIXI.Point) {
         super(position);
         this.imageName = imageName;
@@ -24,14 +22,9 @@ export class ButtonProperties extends AbstractViewProperties {
 
     protected setDefaultValues() {
         this.fileType = ".png";
-        this.debug = false;
         if (this.fontStyle) {
             this.textFieldProperties = new TextFieldProperties(this.fontStyle, this.lang, new PIXI.Point(100, 100), new PIXI.Point(0, 0), AlignConstants.CENTER, AlignConstants.CENTER);
         }
-    }
-
-    public setDebug(value: boolean): void {
-        this.debug = value;
     }
 
 }

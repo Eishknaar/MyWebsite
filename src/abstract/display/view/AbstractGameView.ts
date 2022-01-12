@@ -22,6 +22,7 @@ export class AbstractGameView extends AbstractView {
 
     protected createModel(): void {
         this.model = this.factory.getModel();
+        this.coreProperties.setDebug(this.coreProperties.debug || this.model.isDebug());
     }
 
     protected addEventListeners(): void {

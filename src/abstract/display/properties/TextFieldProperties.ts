@@ -12,8 +12,6 @@ export class TextFieldProperties extends AbstractViewProperties {
     public multiline: boolean;
     public leading: number;
 
-    public debug: boolean;
-
     constructor(fontStyle: string, lang?: string, size?: PIXI.Point, position?: PIXI.Point, horizontalAlign?: string, verticalAlign?: string) {
         super(position);
         this.fontStyle = fontStyle;
@@ -27,7 +25,6 @@ export class TextFieldProperties extends AbstractViewProperties {
     protected setDefaultValues(): void {
         this.multiline = false;
         this.leading = 50;
-        this.debug = false;
     }
 
     public setMultiline(value: boolean): void {
@@ -36,10 +33,6 @@ export class TextFieldProperties extends AbstractViewProperties {
 
     public setLeading(value: number): void {
         this.leading = value;
-    }
-
-    public setDebug(value: boolean): void {
-        this.debug = value;
     }
 
 }
