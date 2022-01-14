@@ -28,12 +28,18 @@ class Main {
 
     protected create(): void {
         this.createBackground();
+        this.createPlayer();
         this.createPlatformDisplay();
     }
 
     protected createBackground(): void {
         let background = this.factory.createBackground();
         this.addComponent(background);
+    }
+
+    protected createPlayer(): void {
+        let player = this.factory.createPlayer();
+        this.addComponent(player);
     }
 
     protected createPlatformDisplay(): void {

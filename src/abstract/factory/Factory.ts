@@ -8,8 +8,8 @@ import {Platform} from "../../display/view/Platform";
 import {PlatformProperties} from "../../display/properties/PlatformProperties";
 import {Tile} from "../../display/view/Tile";
 import {TileProperties} from "../../display/properties/TileProperties";
-//import {Player} from "../../display/view/Player";
-//import {PlayerProperties} from "../../display/properties/PlayerProperties";
+import {Player} from "../../display/view/Player";
+import {PlayerProperties} from "../../display/properties/PlayerProperties";
 
 export class Factory {
 
@@ -42,9 +42,9 @@ export class Factory {
         return new Tile(this, properties);
     }
 
-    //public createPlayer(): Player {
-    //    return new Player(this, new PlayerProperties());
-    //}
+    public createPlayer(): Player {
+        return new Player(this, new PlayerProperties());
+    }
 
     public getModel(): Model {
         return this.model;
