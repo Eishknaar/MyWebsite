@@ -2,7 +2,7 @@ import {AbstractViewProperties} from "../../abstract/display/properties/Abstract
 import {PlatformProperties} from "./PlatformProperties";
 export class PlatformDisplayProperties extends AbstractViewProperties {
 
-public platformPropertiesArray: PlatformProperties[];
+    public platformPropertiesArray: PlatformProperties[];
 
     constructor(position?: PIXI.Point) {
         super(position);
