@@ -6,8 +6,8 @@ export class BackgroundProperties extends AbstractViewProperties {
 
     public spriteProperties: SpriteProperties;
 
-    constructor() {
-        super();
+    constructor(position?: PIXI.Point) {
+        super(position);
         this.setDefaultValues();
     }
 

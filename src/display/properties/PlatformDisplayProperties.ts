@@ -4,8 +4,8 @@ export class PlatformDisplayProperties extends AbstractViewProperties {
 
 public platformPropertiesArray: PlatformProperties[];
 
-    constructor(){
-        super();
+    constructor(position?: PIXI.Point) {
+        super(position);
         this.setDefaultValues();
     }
 
