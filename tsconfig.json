@@ -9,5 +9,11 @@
     "declaration": true,
     "declarationDir": "./dev/dts",
     "outDir": "./dev/js/"
+  },
+  "typedocOptions": {
+    "entryPointStrategy": "expand",
+    "entryPoints": ["./src/Main.ts"],
+    "sort": ["source-order"],
+    "out": "./docs"
   }
 }

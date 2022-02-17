@@ -11,6 +11,19 @@ import {TileProperties} from "../../display/properties/TileProperties";
 import {Player} from "../../display/view/Player";
 import {PlayerProperties} from "../../display/properties/PlayerProperties";
 
+export * from "../model/Model";
+export * from "../../controllers/GameController";
+export * from "../../display/view/Background";
+export * from "../../display/properties/BackgroundProperties";
+export * from "../../display/view/PlatformDisplay";
+export * from "../../display/properties/PlatformDisplayProperties";
+export * from "../../display/view/Platform";
+export * from "../../display/properties/PlatformProperties";
+export * from "../../display/view/Tile";
+export * from "../../display/properties/TileProperties";
+export * from "../../display/view/Player";
+export * from "../../display/properties/PlayerProperties";
+
 export class Factory {
 
     protected model: Model;
