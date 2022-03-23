@@ -5,6 +5,7 @@ import {Factory} from "./abstract/factory/Factory";
 import {ImageLoader} from "./abstract/loader/ImageLoader";
 import {gsap} from "gsap";
 import {PixiPlugin} from "gsap/PixiPlugin";
+import {EventStyle} from "./style/EventStyle";
 
 export * from "./abstract/factory/Factory";
 export * from "./abstract/loader/ImageLoader";
@@ -21,8 +22,15 @@ export class Main {
 
     /** Creates global variables */
     constructor() {
+        this.addWindowListeners();
         this.createFactory();
         this.createLoader();
+    }
+
+    /** Adds listeners for events from the window */
+    protected addWindowListeners(): void {
+        window.addEventListener("keydown", this.onKeyDown.bind(this));
+        window.addEventListener("keyup", this.onKeyUp.bind(this));
     }
 
     /** Creates a {@link Factory} */
@@ -69,6 +77,22 @@ export class Main {
      */
     protected addComponent(component: PIXI.DisplayObject): void {
         pixiManager.stage.addChild(component);
+    }
+
+    /**
+     * Dispatches the windows keydown event to the rest of the game
+     * @param event The event data passed from the window event
+     */
+    protected onKeyDown(event: any): void {
+        this.factory.getModel().dispatchEvent(EventStyle.KEY_DOWN, event);
+    }
+
+    /**
+     * Dispatches the windows keyup event to the rest of the game
+     * @param event The event data passed from the window event
+     */
+    protected onKeyUp(event: any): void {
+        this.factory.getModel().dispatchEvent(EventStyle.KEY_DOWN, event);
     }
 }
 

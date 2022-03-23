@@ -33,13 +33,13 @@ export class Model {
     }
 
     public addEventListener(event: string, handler: Function, scope: any): void {
-        this.eventHandler.addListener(event, () => {
-            handler.call(scope);
+        this.eventHandler.addListener(event, (args) => {
+            handler.call(scope, args);
         })
     }
 
-    public dispatchEvent(event: string): void {
-        this.eventHandler.emit(event);
+    public dispatchEvent(event: string, data?: any): void {
+        this.eventHandler.emit(event, data);
     }
 
 }
