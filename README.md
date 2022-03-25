@@ -23,7 +23,7 @@ To update docs run "npm run doc"
 To run the game ensure Docker Desktop is running and do the following:
 
 Open a Command Prompt with admin rights and run
-"docker run -it --rm --name engine -p 8888:8888 coregaming/simple-slot-api"
+"docker run -it --rm --name engine -p 8888:8888 jdaviee/getting-started"
 
 In the terminal run
 "npm install"
