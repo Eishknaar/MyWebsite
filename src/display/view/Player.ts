@@ -9,7 +9,7 @@ export class Player extends Interactable {
 
     public properties: PlayerProperties;
     public animatedSprite: AnimatedSprite;
-    private horizontalMovement: number;
+    private horizontalMovement: number = 0;
 
     protected create(): void {
         super.create();
@@ -24,6 +24,11 @@ export class Player extends Interactable {
     protected addEventListeners(): void {
         super.addEventListeners();
         this.addEventListener(EventStyle.KEY_DOWN, this.onKeyDown, this);
+        this.addEventListener(EventStyle.KEY_UP, this.onKeyUp, this);
+    }
+
+    public update(): void {
+        this.x += this.horizontalMovement;
     }
 
     protected createAnimatedSprite(): void {
@@ -32,14 +37,28 @@ export class Player extends Interactable {
         this.animatedSprite.play();
     }
 
-    protected onKeyDown(event): void {
-        switch(event.keyCode)
-        {
+    protected onKeyDown(event: string, eventData: any): void {
+        this.setHorizontalMovement(event, eventData.keyCode);
+        console.log(this.horizontalMovement);
+        console.log(event);
+        console.log(eventData);
+        console.log(eventData.type);
+    }
+    protected onKeyUp(event: string, eventData): void {
+        this.setHorizontalMovement(event, eventData.keyCode);
+        console.log(this.horizontalMovement);
+        console.log(eventData.type);
+    }
+
+    protected setHorizontalMovement(event: string, keyCode: number): void {
+        switch(keyCode) {
             case KeyCode.A:
-                this.horizontalMovement = 1;
+                this.horizontalMovement = event === EventStyle.KEY_DOWN ? -1 : 0;
                 break;
             case KeyCode.D:
-                this.horizontalMovement = -1;
+                this.horizontalMovement = event === EventStyle.KEY_DOWN ? 1 : 0;
+                break;
+            default:
                 break;
         }
     }

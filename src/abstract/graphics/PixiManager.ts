@@ -58,10 +58,8 @@ class PixiManager {
     }
 
 
-    private render(): void {
+    public render(): void {
         this.renderer.render(this.stage);
-
-        requestAnimationFrame(() => this.render());
     }
 
 

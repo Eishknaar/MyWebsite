@@ -3,6 +3,7 @@ import "pixi.js";
 import pixiManager from "abstract/graphics/PixiManager";
 import {Factory} from "./abstract/factory/Factory";
 import {ImageLoader} from "./abstract/loader/ImageLoader";
+import {Player} from "./display/view/Player";
 import {gsap} from "gsap";
 import {PixiPlugin} from "gsap/PixiPlugin";
 import {EventStyle} from "./style/EventStyle";
@@ -19,12 +20,14 @@ export class Main {
     protected factory: Factory;
     /** Used to load all assets */
     protected loader: ImageLoader;
+    protected player: Player;
 
     /** Creates global variables */
     constructor() {
         this.addWindowListeners();
         this.createFactory();
         this.createLoader();
+        this.update();
     }
 
     /** Adds listeners for events from the window */
@@ -61,8 +64,8 @@ export class Main {
 
     /** Adds a {@link Player} to the screen */
     protected createPlayer(): void {
-        let player = this.factory.createPlayer();
-        this.addComponent(player);
+        this.player = this.factory.createPlayer();
+        this.addComponent(this.player);
     }
 
     /** Adds a {@link PlatformDisplay} to the screen */
@@ -92,7 +95,19 @@ export class Main {
      * @param event The event data passed from the window event
      */
     protected onKeyUp(event: any): void {
-        this.factory.getModel().dispatchEvent(EventStyle.KEY_DOWN, event);
+        this.factory.getModel().dispatchEvent(EventStyle.KEY_UP, event);
+    }
+
+    /**
+     * Ran on every tick of the game.
+     */
+    private update(): void {
+        if(this.player)
+        {
+            this.player.update();
+        }
+        pixiManager.render();
+        requestAnimationFrame(() => this.update());
     }
 }
 
