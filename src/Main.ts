@@ -34,6 +34,7 @@ export class Main {
     protected addWindowListeners(): void {
         window.addEventListener("keydown", this.onKeyDown.bind(this));
         window.addEventListener("keyup", this.onKeyUp.bind(this));
+        window.addEventListener("resize", this.onWindowResize.bind(this));
     }
 
     /** Creates a {@link Factory} */
@@ -108,6 +109,13 @@ export class Main {
         }
         pixiManager.render();
         requestAnimationFrame(() => this.update());
+    }
+
+    private onWindowResize(event: any): void {
+        let eventData: any = {event: event};
+        pixiManager.resize();
+        eventData.gameSize = pixiManager.getGameSize();
+        this.factory.getModel().dispatchEvent(EventStyle.WINDOW_RESIZE, eventData);
     }
 }
 

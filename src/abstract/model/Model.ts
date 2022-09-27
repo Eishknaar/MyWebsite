@@ -6,6 +6,7 @@ export class Model {
 
     private eventHandler: EventEmitter;
     private fontMap: FontMap;
+    private gameSize: any = {width: 1920, height: 937};
 
     constructor() {
         this.createEventHandler();
@@ -30,6 +31,14 @@ export class Model {
 
     public isDebug(): boolean {
         return false;
+    }
+
+    public setGameSize(gameSize: any): void {
+        this.gameSize = gameSize;
+    }
+
+    public getGameSize(): any {
+        return this.gameSize;
     }
 
     public addEventListener(event: string, handler: Function, scope: any): void {

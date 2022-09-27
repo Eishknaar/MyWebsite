@@ -8,7 +8,16 @@ export class GameController extends AbstractController {
         super(factory);
     }
 
-    protected addEventListeners() {
+    protected addEventListeners(): void {
         super.addEventListeners();
+        this.addEventListener(EventStyle.WINDOW_RESIZE, this.onWindowResize, this);
+    }
+
+    protected initialise(): void {
+
+    }
+
+    protected onWindowResize(event: string, eventData: any): void {
+
     }
 }

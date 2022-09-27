@@ -19,7 +19,6 @@ class PixiManager {
         this.width = 1920;
         this.height = 937;
         this.ratio = this.width / this.height;
-        window.onresize = () => this.resize();
     }
 
     private setScene(): void {
@@ -38,7 +37,7 @@ class PixiManager {
         this.stage = new PIXI.Container();
     }
 
-    private resize(): void {
+    public resize(): void {
         let screenWidth: number = window.innerWidth;
         let screenHeight: number = window.innerHeight;
         let screenRatio: number = screenWidth / screenHeight;
@@ -55,11 +54,17 @@ class PixiManager {
         }
         this.renderer.view.style.width = newWidth + 'px';
         this.renderer.view.style.height = newHeight + 'px';
+        this.width = newWidth;
+        this.height = newHeight;
     }
 
 
     public render(): void {
         this.renderer.render(this.stage);
+    }
+
+    public getGameSize(): any {
+        return {width: this.width, height: this.height};
     }
 
 

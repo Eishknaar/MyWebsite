@@ -9,7 +9,7 @@ export class AbstractController {
     constructor(factory: Factory) {
         this.createFactory(factory);
         this.createModel();
-        this.addEventListeners()
+        this.addEventListeners();
         this.initialise();
     }
 

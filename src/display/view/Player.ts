@@ -9,7 +9,11 @@ export class Player extends Interactable {
 
     public properties: PlayerProperties;
     public animatedSprite: AnimatedSprite;
+    private topSpeed: number = 10;
+    private acceleration: number = 1;
+    private friction: number = 0.98;
     private horizontalMovement: number = 0;
+    private verticalMovement: number = 0;
 
     protected create(): void {
         super.create();
@@ -28,7 +32,13 @@ export class Player extends Interactable {
     }
 
     public update(): void {
+        this.horizontalMovement *= this.friction;
+        this.verticalMovement *= this.friction;
         this.x += this.horizontalMovement;
+        this.y += this.verticalMovement;
+
+        this.x = this.clamp(this.x, 0, this.model.getGameSize().width - this.getWidth());
+        this.y = this.clamp(this.y, 0, this.model.getGameSize().height - this.getHeight());
     }
 
     protected createAnimatedSprite(): void {
@@ -39,28 +49,81 @@ export class Player extends Interactable {
 
     protected onKeyDown(event: string, eventData: any): void {
         this.setHorizontalMovement(event, eventData.keyCode);
-        console.log(this.horizontalMovement);
-        console.log(event);
-        console.log(eventData);
-        console.log(eventData.type);
+        this.setVerticalMovement(event, eventData.keyCode);
     }
+
     protected onKeyUp(event: string, eventData): void {
         this.setHorizontalMovement(event, eventData.keyCode);
-        console.log(this.horizontalMovement);
-        console.log(eventData.type);
+        this.setVerticalMovement(event, eventData.keyCode);
     }
 
     protected setHorizontalMovement(event: string, keyCode: number): void {
+        let direction = 0;
         switch(keyCode) {
             case KeyCode.A:
-                this.horizontalMovement = event === EventStyle.KEY_DOWN ? -1 : 0;
+                direction = event === EventStyle.KEY_DOWN ? -1 : 0;
                 break;
             case KeyCode.D:
-                this.horizontalMovement = event === EventStyle.KEY_DOWN ? 1 : 0;
+                direction = event === EventStyle.KEY_DOWN ? 1 : 0;
                 break;
             default:
                 break;
         }
+        this.horizontalMovement += direction * this.acceleration;
+        this.horizontalMovement = this.clamp(this.horizontalMovement, -this.topSpeed, this.topSpeed);
+    }
+
+    protected setVerticalMovement(event: string, keyCode: number): void {
+        let direction = 0;
+        switch(keyCode) {
+            case KeyCode.W:
+                direction = event === EventStyle.KEY_DOWN ? -1 : 0;
+                break;
+            case KeyCode.S:
+                direction = event === EventStyle.KEY_DOWN ? 1 : 0;
+                break;
+            default:
+                break;
+        }
+        this.verticalMovement += direction * this.acceleration;
+        this.verticalMovement = this.clamp(this.verticalMovement, -this.topSpeed, this.topSpeed);
+    }
+
+    protected clamp(value: number, min: number, max: number): number {
+        let val = Math.min(max, Math.max(min, value));
+        return val;
+    }
+
+    public setAcceleration(value: number): void {
+        this.acceleration = value;
+    }
+
+    public getAcceleration(): number {
+        return this.acceleration;
+    }
+
+    public setFriction(value: number): void {
+        this.friction = value;
+    }
+
+    public getFriction(): number {
+        return this.friction;
+    }
+
+    public setTopSpeed(value: number): void {
+        this.topSpeed = value;
+    }
+
+    public getTopSpeed(): number {
+        return this.topSpeed;
+    }
+
+    public getWidth(): number {
+        return this.animatedSprite.width;
+    }
+
+    public getHeight(): number {
+        return this.animatedSprite.height;
     }
 
 }
